@@ -1,0 +1,254 @@
+/**
+* Menu Logic
+*
+* 1. Small screen menu uses :target to create opened and closed states, 
+* styles then applied to these selectors. This ensures accessibility as the 
+* menu functions without JavaScript in its basic form.
+*
+* 2. JS then used, preventDefault, so that opening and closing doesnt trigger
+* the browser history.
+*
+* 3. aria-expanded attributes added via JS to replace :target then styled instead
+* of :target.
+*
+* 4. To make the menu slide down underneath the logo, the logo is placed on a 
+* separate layer above.
+*
+* 5. Menu open and close links are within different areas of the html, so to 
+* animate separately they are assigned toggles via JS.
+*/
+/* ==========================================================================
+   General Styles
+   ========================================================================== */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Screen reader only */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+body {
+  height: 100vh;
+  width: 100%;
+  --large-layout-width: 80%;
+  --small-layout-width: 100%;
+  --topbar-height: 100px;
+  --dark-blue: #1F2937;
+  --off-white: #F9FAF8;
+  --light-grey: #bfc3c8;
+  --medium-grey: #6b757f;
+  --bright-blue: #3882F6;
+  --grey-blue: #c7d5ed;
+  --section-vertical-padding: 100px;
+  --typography-v-padding: 15px;
+  --small-menu-padding:40px;
+  font-family: "Roboto", sans-serif;
+  color: var(--dark-blue);
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+ul li {
+  display: inline-block;
+  background-color: var(--dark-blue);
+}
+ul li a {
+  text-decoration: none;
+  color: var(--light-grey);
+  font-size: 14px;
+  white-space: nowrap;
+}
+
+/* ==========================================================================
+   Toggle Buttons
+   ========================================================================== */
+.menu-open a,
+.menu-close a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+.menu-open {
+  display: flex;
+  align-items: center;
+  margin-top: -3px;
+}
+.menu-open a {
+  transform: translateX(-600%);
+  transition: 1s;
+  opacity: 0;
+  color: var(--off-white);
+}
+.menu-open a.active {
+  transform: translateX(calc(var(--small-menu-padding) * -1));
+  opacity: 1;
+}
+
+.menu-close {
+  display: flex;
+  align-items: center;
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
+  height: var(--topbar-height);
+  background-color: var(--dark-blue);
+}
+.menu-close a {
+  transform: translateX(var(--small-menu-padding));
+  transition: 1s;
+  opacity: 0;
+  color: var(--off-white);
+}
+.menu-close a.active {
+  transform: translateX(0%);
+  opacity: 1;
+}
+
+/* ==========================================================================
+   Main Container Layout
+   ========================================================================== */
+.header-layout {
+  display: flex;
+  justify-content: center;
+  background-color: var(--dark-blue);
+  color: var(--off-white);
+  height: var(--topbar-height);
+}
+.header-layout .header {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  width: var(--small-layout-width);
+  gap: 10px;
+}
+
+/* ==========================================================================
+   Logo
+   ========================================================================== */
+.logo-layout {
+  position: absolute;
+  width: 100%;
+  top: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--off-white);
+  height: var(--topbar-height);
+  pointer-events: none;
+}
+.logo-layout .logo-container {
+  width: var(--large-layout-width);
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+/* placed twice in html, therefore not nested */
+.logo-element {
+  background-color: var(--dark-blue);
+  display: flex;
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
+  height: 100%;
+  align-items: center;
+  font-size: 22px;
+  padding: 0 50px 0 0;
+}
+
+/* ==========================================================================
+   Small Screen Menu
+   ========================================================================== */
+#menu {
+  position: absolute;
+  max-width: -webkit-fit-content;
+  max-width: -moz-fit-content;
+  max-width: fit-content;
+  top: 0px;
+  right: 0px;
+  display: flex;
+  transition: 0.3s;
+  transition-timing-function: cubic-bezier(0.19, 1, 0.22, 1);
+  background-color: var(--dark-blue);
+  padding: 0 var(--small-menu-padding) 0 var(--small-menu-padding);
+}
+#menu:target, #menu[aria-expanded=true] {
+  transform: translateX(-100%);
+}
+#menu .small-menu-layout {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  width: var(--small-layout-width);
+  gap: 1px;
+}
+#menu li {
+  padding: 6px 0;
+}
+
+/* ==========================================================================
+   Large Screen Items
+   ========================================================================== */
+.large-menu,
+.large-screen-logo {
+  left: -100%;
+  position: absolute;
+}
+
+/* ==========================================================================
+   Large Screen Media Query
+   ========================================================================== */
+@media (min-width: 768px) {
+  .header {
+    flex-direction: row;
+    gap: 50px;
+    width: var(--large-layout-width);
+  }
+  .header .menu-open {
+    display: none;
+  }
+  .header .large-menu {
+    display: flex;
+    flex-direction: row;
+    flex: 2;
+    align-items: center;
+    align-content: center;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    -moz-column-gap: 15px;
+         column-gap: 15px;
+    row-gap: 10px;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+    left: 0;
+    position: relative;
+  }
+  .header .large-screen-logo {
+    left: 0;
+    position: relative;
+  }
+  .logo {
+    display: flex;
+    align-items: center;
+  }
+  #menu:target {
+    position: absolute;
+    transform: translateX(100%);
+  }
+}/*# sourceMappingURL=style.css.map */
