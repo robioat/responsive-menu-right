@@ -181,6 +181,7 @@ ul li a {
   max-width: fit-content;
   top: 0px;
   right: 0px;
+  transform: translateX(100%);
   display: flex;
   transition: 0.3s;
   transition-timing-function: cubic-bezier(0.19, 1, 0.22, 1);
@@ -188,7 +189,7 @@ ul li a {
   padding: 0 var(--small-menu-padding) 0 var(--small-menu-padding);
 }
 #menu:target, #menu[aria-expanded=true] {
-  transform: translateX(-100%);
+  transform: translateX(0);
 }
 #menu .small-menu-layout {
   display: flex;
@@ -204,10 +205,8 @@ ul li a {
 /* ==========================================================================
    Large Screen Items
    ========================================================================== */
-.large-menu,
-.large-screen-logo {
-  left: -100%;
-  position: absolute;
+.large-menu {
+  visibility: hidden;
 }
 
 /* ==========================================================================
@@ -236,12 +235,7 @@ ul li a {
     row-gap: 10px;
     justify-content: flex-end;
     flex-wrap: wrap;
-    left: 0;
-    position: relative;
-  }
-  .header .large-screen-logo {
-    left: 0;
-    position: relative;
+    visibility: visible;
   }
   .logo {
     display: flex;

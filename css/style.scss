@@ -189,6 +189,7 @@ ul {
     max-width: fit-content;
     top: 0px;
     right:0px;
+    transform: translateX(100%);
     display: flex;
     transition: 0.3s;
     transition-timing-function: cubic-bezier(0.190, 1.000, 0.220, 1.000);
@@ -197,7 +198,7 @@ ul {
 
     &:target,
     &[aria-expanded="true"] {
-        transform: translateX(-100%);
+        transform: translateX(0);
     }
 
     .small-menu-layout {
@@ -217,10 +218,8 @@ ul {
    Large Screen Items
    ========================================================================== */
 
-.large-menu,
-.large-screen-logo {
-    left: -100%;
-    position: absolute;
+.large-menu{
+    visibility:hidden;
 }
 
 /* ==========================================================================
@@ -250,13 +249,7 @@ ul {
             row-gap: 10px;
             justify-content: flex-end;
             flex-wrap: wrap;
-            left: 0;
-            position: relative;
-        }
-
-        .large-screen-logo {
-            left: 0;
-            position: relative;
+            visibility:visible;
         }
     }
 
