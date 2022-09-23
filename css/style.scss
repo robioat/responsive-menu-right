@@ -53,6 +53,7 @@ body {
     --grey-blue: #c7d5ed;
     --section-vertical-padding: 100px;
     --typography-v-padding: 15px;
+    --menu-offset: 50px;
 
     font-family: 'Roboto', sans-serif;
     color: var(--dark-blue);
@@ -187,12 +188,15 @@ ul {
     position: absolute;
     width: 100%;
     top: 0px;
+    right:0px;
     transform: translateY(-100%);
     display: flex;
     justify-content: center;
     transition: 0.3s;
     transition-timing-function: cubic-bezier(0.190, 1.000, 0.220, 1.000);
     background-color: var(--dark-blue);
+    width: max-content;
+
 
     &:target,
     &[aria-expanded="true"] {
@@ -203,8 +207,9 @@ ul {
         display: flex;
         flex-direction: column;
         align-items: flex-end;
-        width: var(--large-layout-width);
         gap: 1px;
+        padding:0px 50px 25px 50px;
+        
     }
 
     li {
@@ -216,10 +221,8 @@ ul {
    Large Screen Items
    ========================================================================== */
 
-.large-menu,
-.large-screen-logo {
-    top: -500px;
-    position: absolute;
+.large-menu li{
+    display:none;
 }
 
 /* ==========================================================================
@@ -248,13 +251,10 @@ ul {
             row-gap: 10px;
             justify-content: flex-end;
             flex-wrap: wrap;
-            top: 0;
-            position: relative;
-        }
 
-        .large-screen-logo {
-            top: 0;
-            position: relative;
+            li{
+                display:block;
+            }
         }
     }
 

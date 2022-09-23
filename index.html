@@ -17,12 +17,6 @@
     <header>
         <div class="header-layout">
             <div class="header">
-                <div class="menu-open">
-                    <a href="#menu" aria-label="Open main menu" class="active">
-                        <span class="sr-only">Open main menu</span>
-                        <i class="fa-solid fa-bars" aria-hidden="true" hidden></i>
-                    </a>
-                </div>
                 <div class="logo-element large-screen-logo">
                     <div class="logo">Header Logo</div>
                 </div>
@@ -33,7 +27,13 @@
                     <li><a href="test.html">header link four</a></li>
                     <li><a href="test.html">header link five</a></li>
                     <li><a href="test.html">header link six</a></li>  
-                </ul>     
+                </ul>  
+                <div class="menu-open">
+                    <a href="#menu" aria-label="Open main menu" class="active">
+                        <span class="sr-only">Open main menu</span>
+                        <i class="fa-solid fa-bars" aria-hidden="true" hidden></i>
+                    </a>
+                </div>   
             </div>    
         </div>
         <div id="menu" tabindex="-1" aria-expanded="false">
@@ -54,15 +54,7 @@
                 </ul>
             </div>
         </div>
-        <!-- Duplicate logo for z-index purposes. Allows the mobile menu to slide in under the
-        If altered to slide in from the left or right, unecessary -->
-        <div class="logo-layout">
-            <div class="logo-container">
-                <div class="logo-element">
-                    <div class="logo">Header Logo</div>
-                </div>
-            </div>
-        </div>
+        
     </header>
     <script src="js/script.js"></script>
 </body>
