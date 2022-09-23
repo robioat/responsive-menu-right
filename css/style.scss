@@ -185,11 +185,11 @@ ul {
    ========================================================================== */
 
 #menu {
-    position: absolute;
+    position: fixed;
     width: 100%;
     top: 0px;
     right:0px;
-    transform: translateY(-100%);
+    transform: translateX(100%);
     display: flex;
     justify-content: center;
     transition: 0.3s;
@@ -200,7 +200,7 @@ ul {
 
     &:target,
     &[aria-expanded="true"] {
-        transform: translateY(0);
+        transform:translateX(0);        
     }
 
     .small-menu-layout {

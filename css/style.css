@@ -175,11 +175,11 @@ ul li a {
    Small Screen Menu
    ========================================================================== */
 #menu {
-  position: absolute;
+  position: fixed;
   width: 100%;
   top: 0px;
   right: 0px;
-  transform: translateY(-100%);
+  transform: translateX(100%);
   display: flex;
   justify-content: center;
   transition: 0.3s;
@@ -190,7 +190,7 @@ ul li a {
   width: max-content;
 }
 #menu:target, #menu[aria-expanded=true] {
-  transform: translateY(0);
+  transform: translateX(0);
 }
 #menu .small-menu-layout {
   display: flex;
