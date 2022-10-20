@@ -53,7 +53,6 @@ body {
     --grey-blue: #c7d5ed;
     --section-vertical-padding: 100px;
     --typography-v-padding: 15px;
-    --menu-offset: 50px;
 
     font-family: 'Roboto', sans-serif;
     color: var(--dark-blue);
@@ -78,6 +77,8 @@ ul {
         }
     }
 }
+
+
 
 /* ==========================================================================
    Toggle Buttons
@@ -147,7 +148,7 @@ ul {
 }
 
 /* ==========================================================================
-   Logo
+   Logo Top Layer
    ========================================================================== */
 
 .logo-layout {
@@ -169,52 +170,33 @@ ul {
     }
 
 }
-/* placed twice in html, therefore not nested */
-.logo-element{
-    background-color: var(--dark-blue);
-    display:flex;
-    width:max-content;
-    height:100%;
-    align-items:center;
-    font-size: 22px;
-    padding:0 50px 0 0;
-
-    .logo{
-        white-space: nowrap;
-    }
-}
 
 /* ==========================================================================
    Small Screen Menu
    ========================================================================== */
 
 #menu {
-    position: fixed;
+    position: absolute;
     width: 100%;
     top: 0px;
-    right:0px;
-    transform: translateX(100%);
+    transform: translateY(-100%);
     display: flex;
     justify-content: center;
     transition: 0.3s;
     transition-timing-function: cubic-bezier(0.190, 1.000, 0.220, 1.000);
     background-color: var(--dark-blue);
-    width: max-content;
-
 
     &:target,
     &[aria-expanded="true"] {
-        transform: translateX(0);
-        transform:translateX(0);        
+        transform: translateY(0);
     }
 
     .small-menu-layout {
         display: flex;
         flex-direction: column;
         align-items: flex-end;
+        width: var(--large-layout-width);
         gap: 1px;
-        padding:0px 50px 25px 50px;
-        
     }
 
     li {
@@ -226,13 +208,11 @@ ul {
    Large Screen Items
    ========================================================================== */
 
-.large-menu{
-    visibility:hidden;
+.large-menu,
+.large-screen-logo {
+    top: -500px;
+    position: absolute;
 }
-.large-menu li{
-    display:none;
-}
-
 
 /* ==========================================================================
    Large Screen Media Query
@@ -260,12 +240,13 @@ ul {
             row-gap: 10px;
             justify-content: flex-end;
             flex-wrap: wrap;
+            top: 0;
+            position: relative;
+        }
 
-            visibility:visible;
-
-            li{
-                display:block;
-            }
+        .large-screen-logo {
+            top: 0;
+            position: relative;
         }
     }
 
